@@ -9,7 +9,10 @@ GOGET=$(GOCMD) get
 BINARY_NAME=catapi
 BINARY_UNIX=$(BINARY_NAME)_unix
 
-all: test build build-linux docker
+all: deps  build build-linux docker
+deps:
+	$(GOGET) -u github.com/onsi/ginkgo
+	$(GOGET) -u github.com/go-redis/redis
 build: 
 	$(GOINSTALL) github.com/prg3/catapi
 test: 
