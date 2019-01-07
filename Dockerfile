@@ -1,7 +1,7 @@
 FROM golang:1.11 as builder
 
 WORKDIR /go/src/app
-COPY . .
+COPY *.go .
 
 RUN CGO_ENABLED=0 GOOS=linux go get -d -v ./...
 RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o catapi .
