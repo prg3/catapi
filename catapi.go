@@ -130,14 +130,12 @@ func historyHandler() (string) {
 		log.Println(cats)
 	}
 
-	for cat := range cats {
-		log.Println(cats[cat])
-		
-	}
 	catOutput.Images = cats
 
-	log.Println(catOutput)
-
+	if debug {
+		log.Println(catOutput)
+	}
+	
 	catJson, err := json.Marshal(catOutput)
 	if err != nil {
 		log.Fatal("Marshall failed: ", err)

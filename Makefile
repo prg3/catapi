@@ -14,11 +14,14 @@ deps:
 	$(GOGET) -u github.com/go-redis/redis
 build: 
 	$(GOBUILD) -a -installsuffix cgo -o catapi .
-test: 
-	$(GOTEST) -v ./...
+# test: 
+#	$(GOTEST) -v ./...
 clean: 
 	$(GOCLEAN)
 	rm -f $(BINARY_NAME)
 	rm -f $(BINARY_UNIX)
+	docker rmi --force catapi
 docker:
 	docker build -t catapi .
+docker-run:
+	docker run -it --env-file .env -p8080:80 catapi:latest
